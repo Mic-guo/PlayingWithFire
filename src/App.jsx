@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 // import './App.css'
 import "./index.css";
 
@@ -51,7 +49,10 @@ function App() {
         </div>
         <div className=" cursor-none overflow-hidden">
           <h1 className="flex justify-center items-center text-center w-screen h-screen bg-zinc-900">
-            <div className=" font-bold text-white text-7xl select-none">
+            <div
+              // class="interactable"
+              className=" font-bold text-white text-7xl select-none"
+            >
               Your Road <br /> to <br /> Financial Freedom
             </div>
           </h1>
