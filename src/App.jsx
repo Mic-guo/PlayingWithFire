@@ -46,7 +46,7 @@ function App() {
         </svg>
         <div className="text-white w-screen -ml-10 pt-1">click to continue</div>
       </div>
-      <div>
+      <div className=" cursor-none">
         <h1 className="flex justify-center items-center text-center w-screen h-screen bg-zinc-900">
           <div className=" font-bold text-white text-7xl select-none">
             Your Road <br /> to <br /> Financial Freedom
