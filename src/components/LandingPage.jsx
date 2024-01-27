@@ -1,4 +1,5 @@
 import '../styles/index.css';
+import { useNavigate } from 'react-router-dom';
 
 const trailer = document.getElementById("trailer");
 
@@ -23,9 +24,15 @@ window.onmousemove = (e) => {
 };
 
 function LandingPage() {
+  const navigate = useNavigate();
+
+  function handleNavigateToLogin() {
+    navigate('/login');
+  }
+
   return (
     <>
-      <div>
+      <div onClick={handleNavigateToLogin}>
         <div
           id="trailer"
           className=" h-8 w-8 bg-white rounded-3xl fixed left-0 top-0 z-[10000] pointer-events-none opacity-1 transition-opacity duration-500 ease-in"
