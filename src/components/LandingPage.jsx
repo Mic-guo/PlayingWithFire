@@ -1,6 +1,4 @@
-import { useState } from "react";
-// import './App.css'
-import "./index.css";
+import '../styles/index.css';
 
 const trailer = document.getElementById("trailer");
 
@@ -24,7 +22,7 @@ window.onmousemove = (e) => {
   animateTrailer(e, interacting);
 };
 
-function App() {
+function LandingPage() {
   return (
     <>
       <div>
@@ -49,10 +47,7 @@ function App() {
         </div>
         <div className=" cursor-none overflow-hidden">
           <h1 className="flex justify-center items-center text-center w-screen h-screen bg-zinc-900">
-            <div
-              // class="interactable"
-              className=" font-bold text-white text-7xl select-none"
-            >
+            <div className=" font-bold text-white text-7xl select-none">
               Your Road <br /> to <br /> Financial Freedom
             </div>
           </h1>
@@ -62,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default LandingPage;
