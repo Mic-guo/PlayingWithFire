@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import Modal from './Modal';
 import PropTypes from 'prop-types';
 import '../styles/Card.css'
+import { progress } from '@material-tailwind/react';
 
 // Docs {@link https://tailwindcss.com/docs/text-color}
 
@@ -9,23 +11,28 @@ export function Card({ cardName, progressList, svgUrl }) {
     if (progress.length === 0) {
       return 0; // Return 0 if the progress list is empty
     }
-  
+    
     const trueCount = progress.filter(Boolean).length;
     const fraction = trueCount / progress.length;
   
     return fraction * 150;
   };
+
   const [progressWidth, setProgressWidth] = useState(calculateProgressFraction(progressList) + 'px'); // Initial width, replace with your logic
+  const shouldChangeColor = progressList.filter(Boolean).length / progressList.length === 1;
   const [isHovered, setIsHovered] = useState(false);
-  
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to update the progress width
-  const handleCardClick = () => {
-    // Assuming cardName and cardProgress are available in your component
-    // Update the progress bar width when the card is clicked
-    setProgressWidth(progressWidth + 10);
+  const handleCardClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    setIsModalOpen(true);
+  };
+    // setProgressWidth(progressWidth + 10);
 
-    // Redirect to the dashboard page with card information
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleHoverEnter = () => {
@@ -40,7 +47,7 @@ export function Card({ cardName, progressList, svgUrl }) {
     progressList: PropTypes.array.isRequired,
   };
   return (
-    <div class="card" onClick={handleCardClick} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave}>
+    <div class={`${shouldChangeColor ? 'changeColor' : 'card'}`} onClick={handleCardClick} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave}>
       <h3 className="title">{cardName}</h3>
       <div class="bar">
         <div class="emptybar"></div>
