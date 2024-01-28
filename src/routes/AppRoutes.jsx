@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
-import Login from "../components/Login"
-import Dashboard from "../components/dashboard";
+import Login from "../components/Login";
+import Dashboard from "../components/Dashboard";
 
 const AppRoutes = () => {
   return (
