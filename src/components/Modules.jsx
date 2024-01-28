@@ -53,8 +53,8 @@ export function Modules() {
         <div class="flex flex-wrap gap-4 py-4 justify-center bg-gray-800 rounded-lg">
           <aside><h3>Level One</h3></aside>
             {moduleItems.map((module, index) => (
-              <div>
-                <Card key={index} cardName={module.name} progressList={module.progress} svgUrl={module.svgurl} />
+              <div key={index}> 
+                <Card cardName={module.name} progressList={module.progress} svgUrl={module.svgurl} />
               </div>
             ))}
         </div>
