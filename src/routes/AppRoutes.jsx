@@ -1,7 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import Login from "../components/Login"
-import Dashboard from "../components/dashboard";
+import Dashboard from "../components/Dashboard";
+import Modules from "../components/Modules";
+import { UpdatePassword } from "@supabase/auth-ui-react";
 
 const AppRoutes = () => {
   return (

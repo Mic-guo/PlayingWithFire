@@ -50,7 +50,7 @@ export function Modules() {
           <SidebarWithContentSeparator className="flex flex-col"/>
       </div>
       <div className="col-span-4 bg-black-500">
-        <div className="flex flex-row module-list">
+        <div className="flex flex-row module-list"> 
           {moduleItems.map((module, index) => (
             <div>
               <Card key={index} cardName={module.name} progressList={module.progress} svgUrl={module.svgurl} />
