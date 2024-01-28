@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/index.css";
 
 import { Chart as ChartJS, registerables } from "chart.js";
@@ -6,48 +6,111 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { enGB } from "date-fns/locale";
-import ReactApexChart from 'react-apexcharts';
+import ReactApexChart from "react-apexcharts";
+import { supabase } from "./supabaseClient";
 // Correct way to register all of the chart.js components
 ChartJS.register(...registerables);
 
 function ProjectionGraph() {
-  const chartRef = useRef(null);
+  // Define the initial state for series and options
+
+  const [series, setSeries] = useState([
+    {
+      name: "XYZ MOTORS",
+      data: [], // Make sure 'dates' is defined or passed as props
+    },
+  ]);
 
   useEffect(() => {
-    const data = [
-      { year: 2010, count: 10 },
-      { year: 2011, count: 20 },
-      { year: 2012, count: 15 },
-      { year: 2013, count: 25 },
-      { year: 2014, count: 22 },
-      { year: 2015, count: 30 },
-      { year: 2016, count: 28 },
-    ];
+    async function fetchData() {
+      let { data, error } = await supabase
+        .from("Modules")
+        .select(
+            'change_in_money, date_completed'
+        )
+      .eq('section', 0)
+      .order('date_completed', { ascending: true });
 
-    const chart = new Chart(chartRef.current, {
-      type: "bar",
-      data: {
-        labels: data.map((row) => row.year),
-        datasets: [
-          {
-            label: "Acquisitions by year",
-            data: data.map((row) => row.count),
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
+      if (error) console.log("Error:", error);
+      if (data) {
+        console.log(data);
+        const transformedData = data.map((item) => ({
+          x: new Date(item.date_completed).getTime(),
+          y: item.change_in_money,
+        }));
+        // console.log(transformedData);
+        setSeries([{ ...series[0], data: transformedData }]);
       }
-    });
+    }
 
-    // Cleanup function to destroy the chart
-    return () => {
-      chart.destroy();
-    };
+    fetchData();
   }, []);
 
-  return <canvas ref={chartRef} id="acquisitions"></canvas>;
+  const [options, setOptions] = useState({
+    chart: {
+      type: "area",
+      stacked: false,
+      height: 350,
+      zoom: {
+        type: "x",
+        enabled: true,
+        autoScaleYaxis: true,
+      },
+      toolbar: {
+        autoSelected: "zoom",
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    markers: {
+      size: 0,
+    },
+    title: {
+      text: "Current Finances",
+      align: "center",
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        inverseColors: false,
+        opacityFrom: 0.5,
+        opacityTo: 0,
+        stops: [0, 90, 100],
+      },
+    },
+    yaxis: {
+      labels: {
+        // formatter: function (val) {
+        //   return (val / 1000000).toFixed(0);
+        // },
+      },
+      title: {
+        text: "Dollars",
+      },
+    },
+    xaxis: {
+      type: "datetime",
+    },
+    tooltip: {
+      shared: false,
+    },
+  });
+
+  return (
+    <div>
+      <div id="chart">
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="area"
+          height={350}
+        />
+      </div>
+      <div id="html-dist"></div>
+    </div>
+  );
 }
 
 export default ProjectionGraph;
