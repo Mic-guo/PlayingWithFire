@@ -44,7 +44,7 @@ body {
   display: flex;
   height: 280px;
   width: 200px;
-  background-color: #17141d;
+  background-color: #0e0e0e;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
 /*   margin-left: -50px; */
@@ -67,14 +67,35 @@ body {
   left: 50px;
   transition: 0.4s ease-out;
 }
+.changeColor {
+  display: flex;
+  height: 280px;
+  width: 200px;
+  background: linear-gradient(to left, black, rgb(0, 20, 0));
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+/*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+.changeColor h3{
+  color: rgb(129, 156, 112);
+  font-weight: 300;
+  position: absolute;
+  text-decoration: line-through;
+  left: 20px;
+  top: 15px;
+}
 
 .title {
   color: rgb(223, 198, 198);
-  font-weight: 300;
+  font-weight: 400;
   position: absolute;
   left: 20px;
   top: 15px;
 }
+
 
 .bar {
   position: absolute;

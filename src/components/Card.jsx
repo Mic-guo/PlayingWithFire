@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import '../styles/Card.css'
+import { progress } from '@material-tailwind/react';
 
 // Docs {@link https://tailwindcss.com/docs/text-color}
 
@@ -9,13 +10,15 @@ export function Card({ cardName, progressList, svgUrl }) {
     if (progress.length === 0) {
       return 0; // Return 0 if the progress list is empty
     }
-  
+    
     const trueCount = progress.filter(Boolean).length;
     const fraction = trueCount / progress.length;
   
     return fraction * 150;
   };
+
   const [progressWidth, setProgressWidth] = useState(calculateProgressFraction(progressList) + 'px'); // Initial width, replace with your logic
+  const shouldChangeColor = progressList.filter(Boolean).length / progressList.length === 1;
   const [isHovered, setIsHovered] = useState(false);
   
 
@@ -40,7 +43,7 @@ export function Card({ cardName, progressList, svgUrl }) {
     progressList: PropTypes.array.isRequired,
   };
   return (
-    <div class="card" onClick={handleCardClick} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave}>
+    <div class={`${shouldChangeColor ? 'changeColor' : 'card'}`} onClick={handleCardClick} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave}>
       <h3 className="title">{cardName}</h3>
       <div class="bar">
         <div class="emptybar"></div>
