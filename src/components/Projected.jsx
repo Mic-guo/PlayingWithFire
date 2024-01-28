@@ -25,11 +25,9 @@ function ProjectionGraph() {
     async function fetchData() {
       let { data, error } = await supabase
         .from("Modules")
-        .select(
-            'change_in_money, date_completed'
-        )
-      .eq('section', 0)
-      .order('date_completed', { ascending: true });
+        .select("change_in_money, date_completed")
+        .eq("section", 0)
+        .order("date_completed", { ascending: true });
 
       if (error) console.log("Error:", error);
       if (data) {

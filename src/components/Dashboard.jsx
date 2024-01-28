@@ -6,6 +6,7 @@ import ProjectionGraph from "./Projected";
 import { useState } from "react";
 import "../styles/index.css";
 import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Navigate } from "react-router-dom";
 import {
   Card,
   Typography,
@@ -27,6 +28,7 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import Modules from "./Modules";
 
 function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
   const [open, setOpen] = useState(0);
@@ -84,7 +86,7 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
-                  Modums
+                  Modules
                 </ListItem>
               </List>
             </AccordionBody>
@@ -139,16 +141,16 @@ function Dashboard() {
             className="flex flex-col h-full "
           />
         </div>
-        <div
-          className={`flex-grow flex-shrink min-w-4 max-w-[40rem] justify-center transition-transform duration-500 ease-in
+          <div
+            className={`flex-grow flex-shrink min-w-4 max-w-[40rem] justify-center transition-transform duration-500 ease-in
             ${
               isSidebarOpen
-                ? "translate-x-0"
-                : "w-full -translate-x-[3rem] pl-2"
+                ? "translate-x-[2rem]"
+                : "w-full -translate-x-[1rem] pl-2"
             }`}
-        >
-          <ProjectionGraph className={`max-w-full h-[60vh] p-5`} />
-        </div>
+          >
+            <ProjectionGraph className={`max-w-full h-[60vh] p-5 text-white`} />
+          </div>
       </div>
     </>
   );
