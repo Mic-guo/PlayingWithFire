@@ -6,7 +6,7 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { Navigate } from 'react-router-dom';
 
-const supabase = createClient('https://juvxmiodpjkrzownlfow.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1dnhtaW9kcGprcnpvd25sZm93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDYzNzg4MDUsImV4cCI6MjAyMTk1NDgwNX0.5W4aSbiCnzOhHcgDcJwMR6RI6omewuWJYB4ptXYZvtQ')
+const supabase = createClient('https://crevzohrfpvqpihmgqip.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZXZ6b2hyZnB2cXBpaG1ncWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDYzOTk0MTMsImV4cCI6MjAyMTk3NTQxM30.ccJjDiz2E6PWKpA_wal7RtYS7mhvm0VtlP_zaddQG-Q')
 
 function Login() {
   const [session, setSession] = useState(null)
