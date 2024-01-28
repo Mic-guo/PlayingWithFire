@@ -3,12 +3,14 @@
 import SidebarWithContentSeparator from "./sidebar";
 
 function Dashboard() {
-    // return <Navigate to="/" />;
-    return(
-        <>
-            <SidebarWithContentSeparator className="flex flex-col"/>
-        </>
-    )
+  // return <Navigate to="/" />;
+  return (
+    <>
+      <div className="bg-zinc-700 w-screen h-screen">
+        <SidebarWithContentSeparator className="flex flex-col" />
+      </div>
+    </>
+  );
 }
 
 export default Dashboard;
