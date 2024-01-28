@@ -29,10 +29,11 @@ import {
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import Modules from "./Modules";
-import { createClient } from '@supabase/supabase-js'
-import { useNavigate } from 'react-router-dom';
+// import { createClient } from '@supabase/supabase-js'
+import { useNavigate } from "react-router-dom";
+import { supabase } from "./supabaseClient";
 
-const supabase = createClient('https://crevzohrfpvqpihmgqip.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZXZ6b2hyZnB2cXBpaG1ncWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDYzOTk0MTMsImV4cCI6MjAyMTk3NTQxM30.ccJjDiz2E6PWKpA_wal7RtYS7mhvm0VtlP_zaddQG-Q')
+// const supabase = createClient('https://crevzohrfpvqpihmgqip.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZXZ6b2hyZnB2cXBpaG1ncWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDYzOTk0MTMsImV4cCI6MjAyMTk3NTQxM30.ccJjDiz2E6PWKpA_wal7RtYS7mhvm0VtlP_zaddQG-Q')
 
 function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
   const [open, setOpen] = useState(0);
@@ -47,9 +48,9 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      console.error('Error logging out:', error);
+      console.error("Error logging out:", error);
     }
-    navigate('/login');
+    navigate("/login");
     // Optionally redirect the user or update the state after logging out
   };
 
@@ -83,19 +84,13 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
             }
           >
             <ListItem className="p-0" selected={open === 1}>
-              <AccordionHeader
-                onClick={() => handleOpen(1)}
-                className="border-b-0 p-3"
-              >
                 <ListItemPrefix>
                   <PresentationChartBarIcon className="h-5 w-5" />
                 </ListItemPrefix>
                 <Typography color="blue-gray" className="mr-auto font-normal">
                   Dashboard
                 </Typography>
-              </AccordionHeader>
             </ListItem>
-            <AccordionBody className="py-1">
               <List className="p-0">
                 <ListItem>
                   <ListItemPrefix>
@@ -104,7 +99,6 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
                   Modules
                 </ListItem>
               </List>
-            </AccordionBody>
           </Accordion>
           <hr className="my-2 border-blue-gray-50" />
           <ListItem>
@@ -156,16 +150,16 @@ function Dashboard() {
             className="flex flex-col h-full "
           />
         </div>
-          <div
-            className={`flex-grow flex-shrink min-w-4 max-w-[40rem] justify-center transition-transform duration-500 ease-in
+        <div
+          className={`flex-grow flex-shrink min-w-4 max-w-[40rem] justify-center transition-transform duration-500 ease-in
             ${
               isSidebarOpen
                 ? "translate-x-[2rem]"
                 : "w-full -translate-x-[1rem] pl-2"
             }`}
-          >
-            <ProjectionGraph className={`max-w-full h-[60vh] p-5 text-white`} />
-          </div>
+        >
+          <ProjectionGraph className={`max-w-full h-[60vh] p-5 text-white`} />
+        </div>
       </div>
     </>
   );

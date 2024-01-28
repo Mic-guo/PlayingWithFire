@@ -35,14 +35,21 @@ function SidebarWithContentSeparator() {
     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar visibility
   };
 
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Error logging out:', error);
+    }
+    navigate('/login');
+    // Optionally redirect the user or update the state after logging out
+  };
+
   return (
     <div className={`flex flex-row`}>
       {/* {isSidebarOpen && ( transition-opacity ease-in ${isSidebarOpen ? "opacity-100" : "opacity-0 invisible"}*/}
       <Card
         className={`
         select-none
-        transition-transform duration-500 ease-in
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
         h-[calc(100vh-2rem)] w-full max-w-[12rem] p-4 shadow-2xl shadow-blue-gray-900/5 rounded-tr-3xl rounded-br-3xl font-roboto text-zinc-900`}
       >
         <div className="mb-2 p-4">
@@ -81,19 +88,7 @@ function SidebarWithContentSeparator() {
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
-                  Analytics
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Reporting
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Projects
+                  Modules
                 </ListItem>
               </List>
             </AccordionBody>
@@ -111,7 +106,7 @@ function SidebarWithContentSeparator() {
             </ListItemPrefix>
             Settings
           </ListItem>
-          <ListItem>
+          <ListItem onClick={handleLogout}>
             <ListItemPrefix>
               <PowerIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -122,7 +117,7 @@ function SidebarWithContentSeparator() {
       {/* )} */}
       <button
         onClick={toggleSidebar}
-        className={`"p-2 flex h-15 w-15 max-h-10 pt-6 transition-transform duration-500 ease-in
+        className={`"p-2 flex h-15 w-15 max-h-10 pt-6 transition-transform duration-500 ease-in 
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-[12rem] pl-2"}`}
       >
         <Bars3Icon className="h-6 w-6" />
