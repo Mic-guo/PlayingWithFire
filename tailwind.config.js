@@ -9,6 +9,11 @@ export default {
       transitionDuration: {
         '500': '500ms',
       },
+      theme: {
+        fontFamily: {
+          'sf-pro': ['SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
+        }
+      },
     },
   },
   plugins: [],
