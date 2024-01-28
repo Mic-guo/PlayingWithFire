@@ -59,7 +59,7 @@ export function Card({ cardName, progressList, svgUrl }) {
           <image color="yellow" href={svgUrl} x="25%" y="25%" width="50%" height="50%" />
         </svg>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} cardDetails={{ cardName, progressList, svgUrl }} />
+      {/* <Modal isOpen={isModalOpen} onClose={closeModal} cardDetails={{ cardName, progressList, svgUrl }} /> */}
     </div>
   );
 }

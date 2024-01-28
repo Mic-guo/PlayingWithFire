@@ -1,5 +1,5 @@
 import Card from './Card'; // Import the Card component
-import SidebarWithContentSeparator from './sidebar';
+import SidebarWithContentSeparator from './Sidebar.jsx';
 import '../styles/Modules.css'
 
 // Docs {@link https://tailwindcss.com/docs/text-color}
