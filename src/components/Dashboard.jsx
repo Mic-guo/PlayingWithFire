@@ -27,6 +27,10 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { createClient } from '@supabase/supabase-js'
+import { useNavigate } from 'react-router-dom';
+
+const supabase = createClient('https://crevzohrfpvqpihmgqip.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZXZ6b2hyZnB2cXBpaG1ncWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDYzOTk0MTMsImV4cCI6MjAyMTk3NTQxM30.ccJjDiz2E6PWKpA_wal7RtYS7mhvm0VtlP_zaddQG-Q')
 
 function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
   const [open, setOpen] = useState(0);
@@ -34,6 +38,17 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Error logging out:', error);
+    }
+    navigate('/login');
+    // Optionally redirect the user or update the state after logging out
   };
 
   //   const toggleSidebar = () => {
@@ -116,7 +131,7 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
             </ListItemPrefix>
             Settings
           </ListItem>
-          <ListItem>
+          <ListItem onClick={handleLogout}>
             <ListItemPrefix>
               <PowerIcon className="h-5 w-5" />
             </ListItemPrefix>

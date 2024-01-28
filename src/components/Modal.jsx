@@ -6,17 +6,11 @@ import '../styles/Modal.css';
 const Modal = ({ isOpen, onClose, cardDetails }) => {
   if (!isOpen) return null;
 
-//   const handleClickBackdrop = (e) => {
-//     onClose(); // Close modal when backdrop is clicked
-//   };
-
-//   const handleModalClick = (e) => {
-//     e.stopPropagation(); // Prevent click inside modal from closing it
-//   };
-
   return (
-    <div className="overlay">
-      <div className="modalContainer">
+    <div onClick={onClose} className="overlay" >
+      <div onClick={(e) => {
+        e.stopPropagation;
+      }} className="modalContainer">
         <p onClick={onClose} className='closeBtn'>X</p>
         <div className="content">
             <p>Meat Meat Fruit</p>
