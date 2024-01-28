@@ -61,8 +61,6 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
       <Card
         className={`
         select-none
-        transition-transform duration-500 ease-in
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
         h-[calc(100vh-2rem)] w-full max-w-[12rem] p-4 shadow-2xl shadow-blue-gray-900/5 rounded-tr-3xl rounded-br-3xl font-roboto text-zinc-900`}
       >
         <div className="mb-2 p-4">
@@ -101,19 +99,7 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
-                  Analytics
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Reporting
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Projects
+                  Modums
                 </ListItem>
               </List>
             </AccordionBody>
@@ -142,8 +128,7 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
       {/* )} */}
       <button
         onClick={toggleSidebar}
-        className={`"p-2 flex h-15 w-15 max-h-10 pt-6 transition-transform duration-500 ease-in
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-[12rem] pl-2"}`}
+        className={`"p-2 flex h-15 w-15 max-h-10 pt-6 pl-2`}
       >
         <Bars3Icon className="h-6 w-6" />
       </button>
@@ -159,19 +144,25 @@ function Dashboard() {
   return (
     <>
       <div className="flex flex-row w-screen h-screen bg-white overflow-x-hidden">
-        <div className="w-[14rem]">
+        <div
+          className={`w-[14rem] transition-transform duration-500 ease-in
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-[12rem]"}`}
+        >
           <SidebarWithContentSeparator
             isSidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
-            className="flex flex-col h-full"
+            className="flex flex-col h-full "
           />
         </div>
-        <div className="flex-grow flex-shrink min-w-4">
-          <ProjectionGraph
-            className={`max-w-full h-[60vh] p-5 
-            transition-transform duration-500 ease-in
-            ${isSidebarOpen ? "translate-x-0" : "-translate-x-[12rem] pl-2"}`}
-          />
+        <div
+          className={`flex-grow flex-shrink min-w-4 max-w-[40rem] justify-center transition-transform duration-500 ease-in
+            ${
+              isSidebarOpen
+                ? "translate-x-0"
+                : "w-full -translate-x-[3rem] pl-2"
+            }`}
+        >
+          <ProjectionGraph className={`max-w-full h-[60vh] p-5`} />
         </div>
       </div>
     </>
