@@ -22,6 +22,8 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "./supabaseClient";
 
 function SidebarWithContentSeparator() {
   const [open, setOpen] = useState(0);
@@ -34,6 +36,12 @@ function SidebarWithContentSeparator() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar visibility
   };
+
+  const navigate = useNavigate();
+
+  function handleDashboard() {
+    navigate('/dashboard')
+  }
 
   function handleModules() {
     navigate('/modules')
@@ -73,7 +81,7 @@ function SidebarWithContentSeparator() {
               />
             }
           >
-            <ListItem className="p-0" selected={open === 1}>
+            <ListItem  onClick={handleDashboard} className="p-0" selected={open === 1}>
                 <ListItemPrefix>
                   <PresentationChartBarIcon className="h-5 w-5" />
                 </ListItemPrefix>
