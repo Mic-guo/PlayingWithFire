@@ -1,10 +1,3 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -76,7 +69,7 @@ body {
 }
 
 .title {
-  color: white;
+  color: rgb(223, 198, 198);
   font-weight: 300;
   position: absolute;
   left: 20px;
@@ -127,9 +120,13 @@ body {
 }
 
 svg {
-  fill: #17141d;
+  fill: #ebff37;
   stroke-width: 2px;
 }
+svg:hover {
+  fill: #88941e;
+}
+
 
 .card:hover .stroke {
   stroke-dashoffset: 100;
