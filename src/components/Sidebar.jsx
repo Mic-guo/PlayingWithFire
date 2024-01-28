@@ -35,6 +35,10 @@ function SidebarWithContentSeparator() {
     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar visibility
   };
 
+  function handleModules() {
+    navigate('/modules')
+  }
+
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -70,28 +74,21 @@ function SidebarWithContentSeparator() {
             }
           >
             <ListItem className="p-0" selected={open === 1}>
-              <AccordionHeader
-                onClick={() => handleOpen(1)}
-                className="border-b-0 p-3"
-              >
                 <ListItemPrefix>
                   <PresentationChartBarIcon className="h-5 w-5" />
                 </ListItemPrefix>
                 <Typography color="blue-gray" className="mr-auto font-normal">
                   Dashboard
                 </Typography>
-              </AccordionHeader>
             </ListItem>
-            <AccordionBody className="py-1">
               <List className="p-0">
-                <ListItem>
+                <ListItem onClick={handleModules}>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
                   Modules
                 </ListItem>
               </List>
-            </AccordionBody>
           </Accordion>
           <hr className="my-2 border-blue-gray-50" />
           <ListItem>
