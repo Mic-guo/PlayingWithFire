@@ -1,11 +1,12 @@
 // Placeholder Dashboard
 // import { Navigate } from 'react-router-dom';
+import SidebarWithContentSeparator from "./sidebar";
 
 function Dashboard() {
     // return <Navigate to="/" />;
     return(
         <>
-            Hello Dash!
+            <SidebarWithContentSeparator className="flex flex-col"/>
         </>
     )
 }
