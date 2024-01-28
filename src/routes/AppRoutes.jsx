@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import Login from "../components/Login"
+import UpdatePassword from "../components/UpdatePassword";
 import Dashboard from "../components/dashboard";
 
 const AppRoutes = () => {
@@ -8,6 +9,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/updatepassword" element={<UpdatePassword />} />
       <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
