@@ -1,13 +1,163 @@
 // Placeholder Dashboard
 // import { Navigate } from 'react-router-dom';
-import SidebarWithContentSeparator from "./sidebar";
+// import SidebarWithContentSeparator from "./sidebar";
+import ProjectionGraph from "./Projected";
+
+import { useState } from "react";
+import "../styles/index.css";
+import { Bars3Icon } from "@heroicons/react/24/solid";
+import {
+  Card,
+  Typography,
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Chip,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
+import {
+  PresentationChartBarIcon,
+  ShoppingBagIcon,
+  UserCircleIcon,
+  Cog6ToothIcon,
+  InboxIcon,
+  PowerIcon,
+} from "@heroicons/react/24/solid";
+import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+
+function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
+  const [open, setOpen] = useState(0);
+  //   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar visibility
+
+  const handleOpen = (value) => {
+    setOpen(open === value ? 0 : value);
+  };
+
+  //   const toggleSidebar = () => {
+  //     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar visibility
+  //   };
+
+  return (
+    <div className={`flex flex-row`}>
+      {/* {isSidebarOpen && ( transition-opacity ease-in ${isSidebarOpen ? "opacity-100" : "opacity-0 invisible"}*/}
+      <Card
+        className={`
+        select-none
+        transition-transform duration-500 ease-in
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        h-[calc(100vh-2rem)] w-full max-w-[12rem] p-4 shadow-2xl shadow-blue-gray-900/5 rounded-tr-3xl rounded-br-3xl font-roboto text-zinc-900`}
+      >
+        <div className="mb-2 p-4">
+          <Typography variant="h5" color="blue-gray">
+            Your Finance
+          </Typography>
+        </div>
+        <List>
+          <Accordion
+            open={open === 1}
+            icon={
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`mx-auto h-4 w-4 transition-transform ${
+                  open === 1 ? "rotate-180" : ""
+                }`}
+              />
+            }
+          >
+            <ListItem className="p-0" selected={open === 1}>
+              <AccordionHeader
+                onClick={() => handleOpen(1)}
+                className="border-b-0 p-3"
+              >
+                <ListItemPrefix>
+                  <PresentationChartBarIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                <Typography color="blue-gray" className="mr-auto font-normal">
+                  Dashboard
+                </Typography>
+              </AccordionHeader>
+            </ListItem>
+            <AccordionBody className="py-1">
+              <List className="p-0">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Analytics
+                </ListItem>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Reporting
+                </ListItem>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Projects
+                </ListItem>
+              </List>
+            </AccordionBody>
+          </Accordion>
+          <hr className="my-2 border-blue-gray-50" />
+          <ListItem>
+            <ListItemPrefix>
+              <UserCircleIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Profile
+          </ListItem>
+          <ListItem>
+            <ListItemPrefix>
+              <Cog6ToothIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Settings
+          </ListItem>
+          <ListItem>
+            <ListItemPrefix>
+              <PowerIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Log Out
+          </ListItem>
+        </List>
+      </Card>
+      {/* )} */}
+      <button
+        onClick={toggleSidebar}
+        className={`"p-2 flex h-15 w-15 max-h-10 pt-6 transition-transform duration-500 ease-in
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-[12rem] pl-2"}`}
+      >
+        <Bars3Icon className="h-6 w-6" />
+      </button>
+    </div>
+  );
+}
 
 function Dashboard() {
-  // return <Navigate to="/" />;
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
     <>
-      <div className="bg-zinc-700 w-screen h-screen">
-        <SidebarWithContentSeparator className="flex flex-col" />
+      <div className="flex flex-row w-screen h-screen bg-white overflow-x-hidden">
+        <div className="w-[14rem]">
+          <SidebarWithContentSeparator
+            isSidebarOpen={isSidebarOpen}
+            toggleSidebar={toggleSidebar}
+            className="flex flex-col h-full"
+          />
+        </div>
+        <div className="flex-grow flex-shrink min-w-4">
+          <ProjectionGraph
+            className={`max-w-full h-[60vh] p-5 
+            transition-transform duration-500 ease-in
+            ${isSidebarOpen ? "translate-x-0" : "-translate-x-[12rem] pl-2"}`}
+          />
+        </div>
       </div>
     </>
   );
