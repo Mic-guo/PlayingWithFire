@@ -45,6 +45,10 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
 
   const navigate = useNavigate();
 
+  function handleDashboard() {
+    navigate('/dashboard')
+  }
+
   function handleModules() {
     navigate('/modules')
   }
@@ -87,7 +91,7 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
               />
             }
           >
-            <ListItem className="p-0" selected={open === 1}>
+            <ListItem onClick={handleDashboard} className="p-0" selected={open === 1}>
                 <ListItemPrefix>
                   <PresentationChartBarIcon className="h-5 w-5" />
                 </ListItemPrefix>
