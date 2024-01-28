@@ -45,6 +45,10 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
 
   const navigate = useNavigate();
 
+  function handleModules() {
+    navigate('/modules')
+  }
+
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -92,7 +96,7 @@ function SidebarWithContentSeparator({ isSidebarOpen, toggleSidebar }) {
                 </Typography>
             </ListItem>
               <List className="p-0">
-                <ListItem>
+                <ListItem onClick={handleModules}>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
