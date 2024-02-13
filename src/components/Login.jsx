@@ -26,7 +26,12 @@ function Login() {
   }, [])
 
   if (!session) {
-    return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
+    return (<Auth supabaseClient={supabase} appearance={{ 
+      theme: ThemeSupa,
+      style: {
+        input: {background: 'white'}
+      }
+    }} />)
   }
   else {
     return (<Navigate to="/dashboard" />)
